@@ -1,6 +1,9 @@
+import sys
+
 class Board:
     def __init__(self):
-        self.columns = ["------","------","------","------","------","------","------"]
+        # the first character is the bottom and the last is the top of the column
+        self.columns = ["A-----","B-----","A-----","A-----","A-----","A-----","B-----"]
         
     def __repr__(self):
         board = ""
@@ -10,6 +13,32 @@ class Board:
             board = board + "\n"
         return board
     
+    def connect4(self, turn):
+        if turn == 1:
+            player = "A"
+        else:
+            player = "B"
+        count = 0
+        # checking columns for 4 in a row
+        for x in range(6):
+            for character in self.columns[x]:
+                if character == player:
+                    count += 1
+                    if count == 4:
+                        return count
+                else:
+                    count = 0
+        # checking rows for 4 in a row
+        for x in range(6):
+            for y in range(7):
+                if self.columns[y][x] == player:
+                    count += 1
+                    if count == 4:
+                        return count
+                else:
+                    count = 0
+        return count
+
     def place_Piece(self, player, column):
         column = column.upper()
         if player == 1:
@@ -42,7 +71,11 @@ class Board:
                 self.columns[0] = self.columns[0].replace("-","B",1)
             if column == "G":
                 self.columns[0] = self.columns[0].replace("-","B",1)
+    
 
 gameBoard = Board()
-
-#comment
+print("Connect 4")
+print("Get 4 in a row or diagonal to win")
+print("To place a piece you will be propted for which column from A-G to place your piece")
+print(gameBoard)
+print(gameBoard.connect4(1))
