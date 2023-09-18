@@ -3,7 +3,7 @@ import sys
 class Board:
     def __init__(self):
         # the first character is the bottom and the last is the top of the column
-        self.columns = ["A-----","B-----","A-----","A-----","A-----","A-----","B-----"]
+        self.columns = ["------","------","------","------","------","------","------"]
         
     def __repr__(self):
         board = ""
@@ -37,6 +37,23 @@ class Board:
                         return count
                 else:
                     count = 0
+        # checking diagonals for 4 in a row
+        for y in range(3):
+            for x in range(4):
+                if self.columns[x][y] == self.columns[x+1][y+1] == self.columns[x+2][y+2] == self.columns[x+3][y+3] == player:
+                    count = 4
+                    return count
+                else:
+                    count = 0
+
+        for y in range(3):
+            for x in range(6, 2, -1):
+                if self.columns[x][y] == self.columns[x-1][y+1] == self.columns[x-2][y+2] == self.columns[x-3][y+3] == player:
+                    count = 4
+                    return count
+                else:
+                    count = 0
+
         return count
 
     def place_Piece(self, player, column):
