@@ -61,38 +61,53 @@ class Board:
         if player == 1:
             if column == "A":
                 self.columns[0] = self.columns[0].replace("-","A",1)
-            if column == "B":
-                self.columns[0] = self.columns[0].replace("-","A",1)
-            if column == "C":
-                self.columns[0] = self.columns[0].replace("-","A",1)
-            if column == "D":
-                self.columns[0] = self.columns[0].replace("-","A",1)
-            if column == "E":
-                self.columns[0] = self.columns[0].replace("-","A",1)
-            if column == "F":
-                self.columns[0] = self.columns[0].replace("-","A",1)
-            if column == "G":
-                self.columns[0] = self.columns[0].replace("-","A",1)
+            elif column == "B":
+                self.columns[1] = self.columns[1].replace("-","A",1)
+            elif column == "C":
+                self.columns[2] = self.columns[2].replace("-","A",1)
+            elif column == "D":
+                self.columns[3] = self.columns[3].replace("-","A",1)
+            elif column == "E":
+                self.columns[4] = self.columns[4].replace("-","A",1)
+            elif column == "F":
+                self.columns[5] = self.columns[5].replace("-","A",1)
+            else:
+                self.columns[6] = self.columns[6].replace("-","A",1)
         else:
             if column == "A":
                 self.columns[0] = self.columns[0].replace("-","B",1)
-            if column == "B":
-                self.columns[0] = self.columns[0].replace("-","B",1)
-            if column == "C":
-                self.columns[0] = self.columns[0].replace("-","B",1)
-            if column == "D":
-                self.columns[0] = self.columns[0].replace("-","B",1)
-            if column == "E":
-                self.columns[0] = self.columns[0].replace("-","B",1)
-            if column == "F":
-                self.columns[0] = self.columns[0].replace("-","B",1)
-            if column == "G":
-                self.columns[0] = self.columns[0].replace("-","B",1)
+            elif column == "B":
+                self.columns[1] = self.columns[1].replace("-","B",1)
+            elif column == "C":
+                self.columns[2] = self.columns[2].replace("-","B",1)
+            elif column == "D":
+                self.columns[3] = self.columns[3].replace("-","B",1)
+            elif column == "E":
+                self.columns[4] = self.columns[4].replace("-","B",1)
+            elif column == "F":
+                self.columns[5] = self.columns[5].replace("-","B",1)
+            else:
+                self.columns[6] = self.columns[6].replace("-","B",1)
     
 
 gameBoard = Board()
 print("Connect 4")
 print("Get 4 in a row or diagonal to win")
 print("To place a piece you will be propted for which column from A-G to place your piece")
+run = True
+turn = 2
+inputcolumns = ["A","B","C","D","E","F","G"]
 print(gameBoard)
-print(gameBoard.connect4(1))
+while run == True:
+    if turn == 1:
+        turn = 2
+    else:
+        turn = 1
+    text = input("Player " + str(turn ) + "'s turn: ")
+    while text.upper() not in inputcolumns:
+        text = input("Incorrect input please input from A-G: ")
+    gameBoard.place_Piece(turn, text)
+    print(gameBoard)
+    if gameBoard.connect4(turn) == 4:
+        print("Player " + str(turn) + " got connect 4!")
+        run = False
