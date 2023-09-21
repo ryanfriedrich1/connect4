@@ -59,32 +59,32 @@ class Board:
     def place_Piece(self, player, column):
         column = column.upper()
         if player == 1:
-            if column == "A":
+            if column == 1:
                 self.columns[0] = self.columns[0].replace("-","A",1)
-            elif column == "B":
+            elif column == 2:
                 self.columns[1] = self.columns[1].replace("-","A",1)
-            elif column == "C":
+            elif column == 3:
                 self.columns[2] = self.columns[2].replace("-","A",1)
-            elif column == "D":
+            elif column == 4:
                 self.columns[3] = self.columns[3].replace("-","A",1)
-            elif column == "E":
+            elif column == 5:
                 self.columns[4] = self.columns[4].replace("-","A",1)
-            elif column == "F":
+            elif column == 6:
                 self.columns[5] = self.columns[5].replace("-","A",1)
             else:
                 self.columns[6] = self.columns[6].replace("-","A",1)
         else:
-            if column == "A":
+            if column == 1:
                 self.columns[0] = self.columns[0].replace("-","B",1)
-            elif column == "B":
+            elif column == 2:
                 self.columns[1] = self.columns[1].replace("-","B",1)
-            elif column == "C":
+            elif column == 3:
                 self.columns[2] = self.columns[2].replace("-","B",1)
-            elif column == "D":
+            elif column == 4:
                 self.columns[3] = self.columns[3].replace("-","B",1)
-            elif column == "E":
+            elif column == 5:
                 self.columns[4] = self.columns[4].replace("-","B",1)
-            elif column == "F":
+            elif column == 6:
                 self.columns[5] = self.columns[5].replace("-","B",1)
             else:
                 self.columns[6] = self.columns[6].replace("-","B",1)
@@ -96,7 +96,7 @@ print("Get 4 in a row or diagonal to win")
 print("To place a piece you will be propted for which column from A-G to place your piece")
 run = True
 turn = 2
-inputcolumns = ["A","B","C","D","E","F","G"]
+inputcolumns = [1,2,3,4,5,6,7]
 print(gameBoard)
 while run == True:
     if turn == 1:
@@ -104,8 +104,8 @@ while run == True:
     else:
         turn = 1
     text = input("Player " + str(turn ) + "'s turn: ")
-    while text.upper() not in inputcolumns:
-        text = input("Incorrect input please input from A-G: ")
+    while text not in inputcolumns:
+        text = input("Incorrect input please input from 1-7: ")
     gameBoard.place_Piece(turn, text)
     print(gameBoard)
     if gameBoard.connect4(turn) == 4:
