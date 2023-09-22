@@ -103,8 +103,8 @@ while run == True:
     else:
         turn = 1
     text = int(input("Player " + str(turn) + "'s turn: "))
-    while text not in inputcolumns:
-        text = input("Incorrect input please input from 1-7: ")
+    while int(text) not in inputcolumns:
+        text = int(input("Incorrect input please input from 1-7: "))
     gameBoard.place_Piece(turn, text)
     print(gameBoard)
     if gameBoard.connect4(turn) == 4:
